@@ -1,16 +1,34 @@
 <script setup>
+import Slider from './components/Slider.vue'
 </script>
 
 <template>
-  <h2>Things</h2>
-  <button id="basic-button">Random</button>
-  <input type="range" min="0" max="10">
+  <div id="content">
+    <div id="sidebar">
+      <h2>Things</h2>
+      <button>ui example</button>
+      <Slider title="Inputtitle" :min="0" :max="50" :step="2"></Slider>
+    </div>
 
+    <div id="viewer">
+    </div>
+  </div>
 </template>
 
 <style scoped>
-.basic-button {
-  display: inline-flex;
-  gap: 9.34px;
+#content {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 68px);
+}
+
+#sidebar {
+  width: 310px;
+  padding: 10px;
+  flex-shrink: 0; 
+}
+
+#viewer {
+  flex-grow: 1; 
 }
 </style>

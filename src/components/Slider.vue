@@ -40,21 +40,4 @@ function emitValueUpdate()
 </template>
 
 <style scoped>
-.modern-range {
-  -webkit-appearance: none;
-  width: 100%;
-  background: linear-gradient(90deg, #fce1e9, #eb7e48);
-  height: 17px;
-  border-radius: 15px;
-  margin: 10px 0px;
-}
-
-.modern-range::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  height: 15px;
-  width: 15px;
-  border-radius: 15px;
-  background-color: white;
-  cursor: pointer;
-}
 </style>
