@@ -2,16 +2,18 @@
 import Slider from './components/Slider.vue'
 import Dropdown from './components/Dropdown.vue';
 
-
 const dropdownOptions = [
   { label: "Blue", value: 0 },
   { label: "Pink", value: 1 },
   { label: "Orange", value: 2 }
 ];
+
+import DiscoExample from "./examples/example1Disco.vue"
+
 </script>
 
 <template>
-  <div id="content">
+  <!-- <div id="content">
     <div id="sidebar">
       <h2>Things</h2>
       <button>ui example</button>
@@ -22,11 +24,13 @@ const dropdownOptions = [
 
     <div id="viewer">
     </div>
+  </div> -->
+  <div id="content">
+    <DiscoExample></DiscoExample>
   </div>
 </template>
 
 <script setup>
-
 
 </script>
 

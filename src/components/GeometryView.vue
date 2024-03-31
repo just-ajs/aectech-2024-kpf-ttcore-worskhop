@@ -29,11 +29,12 @@ const props = defineProps(["data", "path", "runCompute"]);
 const emits = defineEmits(["updateMetadata"]);  
 
 
-watch(() => props.runCompute, (newValue) => {
+watch(() => props.data, (newValue) => {
+  console.log(props.data)
   if (newValue) {
     compute();
   }
-})
+}, {deep: true})
 
 
 // Three js objects
@@ -248,7 +249,7 @@ function zoomCameraToSelection(camera, controls, selection, fitOffset = 1.1) {
 onMounted(async() => {
   init()
   await loadRhino()
-  compute();
+  //compute();
 })
 
 
