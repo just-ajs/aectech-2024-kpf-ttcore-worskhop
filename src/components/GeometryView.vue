@@ -12,9 +12,14 @@ import { onMounted, onUpdated, watch } from 'vue'
 import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import { Rhino3dmLoader } from "three/addons/loaders/3DMLoader.js"
+import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
+import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 import { runCompute } from "@/scripts/compute.js"
 import { loadRhino } from "@/scripts/compute.js";
 
+import context from "../assets/moonless_golf_1k.hdr"
+
+const ghPath = '../assets/disco.gh'
 
 const loader = new Rhino3dmLoader()
 loader.setLibraryPath('https://cdn.jsdelivr.net/npm/rhino3dm@8.0.0-beta2/')
@@ -32,44 +37,85 @@ watch(() => props.runCompute, (newValue) => {
 
 
 // Three js objects
-let renderer, camera, scene,  controls, container
+let renderer, camera, scene,  controls, container, spotLight
+let mirrorMaterial, blackMaterial
+let spotLightRed, spotLightBlue, spotLightGreen, spotLightOrange
 
 
 function init() {
-  // https://threejs.org/docs/#api/en/renderers/WebGLRenderer
-  // This object will render our scene
-  renderer = new THREE.WebGLRenderer()
 
+  //Define container to put three.js scene in
   container = document.getElementById("threejs-container")
 
-  // Rendered needs to know what's the size of the scene. 
+  // Set up renderer - https://threejs.org/docs/#api/en/renderers/WebGLRenderer
+  renderer = new THREE.WebGLRenderer()
   renderer.setSize(container.offsetWidth, container.offsetHeight)
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 0.3
 
   // We are taking element defined in <template> and appending our render to it. 
   container.appendChild(renderer.domElement)
 
-  // https://threejs.org/docs/#api/en/cameras/PerspectiveCamera
-  camera = new THREE.PerspectiveCamera(75, container.offsetWidth / container.offsetHeight, 0.1, 1000)
-  camera.position.set(0, 0, 40)
+  // Set up camera - https://threejs.org/docs/#api/en/cameras/PerspectiveCamera
+  camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000 );
+	camera.position.set(500, -300, 0)
+  camera.lookAt(0,0,0)
 
-  // https://threejs.org/docs/?q=scene#api/en/scenes/Scene
+  // Create scene - https://threejs.org/docs/?q=scene#api/en/scenes/Scene
   scene = new THREE.Scene()
   scene.background = new THREE.Color("#f5f6fa")
+  scene.rotation.y = 0.5;
 
-  // orbit controls
+  // orbit controls - https://threejs.org/docs/#examples/en/controls/OrbitControls
   controls = new OrbitControls(camera, renderer.domElement)
 
-  // add some ambient light here
+  // Ambient Light
   const ambientlight = new THREE.AmbientLight(0xffffff, 1)
   ambientlight.position.set(0, 0, 0)
-  scene.add(ambientlight)
 
-  const directionalLight = new THREE.DirectionalLight(0xffffff, 3)
-  directionalLight.position.set(0, 1, 0)
-  scene.add(directionalLight)
+  //Colored Spot Lights
+  spotLightRed = new THREE.SpotLight( 0xff0040, 400 );
+  spotLightRed.position.set( 100, 0, 0);
+  scene.add( spotLightRed );
 
+  spotLightBlue = new THREE.SpotLight( 0x0040ff, 400 );
+  spotLightBlue.position.set( 0, 100, 0);
+  scene.add( spotLightBlue );
 
-  // add fun shape
+  spotLightGreen = new THREE.SpotLight( 0x80ff80, 400 );
+  spotLightGreen.position.set( -100, 0, 0);
+  scene.add( spotLightGreen );
+
+  spotLightOrange = new THREE.SpotLight( 0xffaa00, 400 );
+  spotLightOrange.position.set( 0, -100, -100);
+  scene.add( spotLightOrange );
+
+  //Load 360 Image for background and envMap
+  new RGBELoader().load(context, function (texture){
+    texture.mapping = THREE.EquirectangularReflectionMapping;
+    mirrorMaterial.envMap = texture
+    scene.background = texture;
+  })
+
+  //Create Materials
+  mirrorMaterial = new THREE.MeshStandardMaterial( {
+    roughness: 0,
+    metalness: 1,
+    flatShading: false
+  });
+
+  blackMaterial = new THREE.MeshBasicMaterial( { color: 0x000000 } ); 
+
+  //Add THREE.js GUI to modify material properties
+  const gui = new GUI();
+  gui.add( mirrorMaterial, 'roughness', 0, 1 );
+  gui.add( mirrorMaterial, 'metalness', 0, 1 );
+  gui.add( renderer, 'toneMappingExposure', 0, 2 ).name( 'exposure' );
+
+  //Rotate scene
+  controls.autoRotate = true;
+
+  //Animate
   animate()
 }
 
@@ -86,7 +132,7 @@ async function compute() {
   // clear objects from scene
   let objectsToRemove = []
   scene.children.forEach(child => {
-    if (!child.isLight) {
+    if (!child.type.toLowerCase().includes("light")) {
       objectsToRemove.push(child)
     }
   })
@@ -94,37 +140,23 @@ async function compute() {
     scene.remove(object)
   })
 
-
+  // add object graph from rhino model to three.js scene
   const buffer = new Uint8Array(doc.toByteArray()).buffer;
   loader.parse(buffer, function (object) {
-    ///////////////////////////////////////////////////////////////////////
-    // add object graph from rhino model to three.js scene
     object.traverse((child) => {
-
-      if (child.isLine) {
-          
-        if (child.userData.attributes.userStrings!= undefined && child.userData.attributes.userStrings.length > 0) {
-          //get color from userStrings
-          const colorData = child.userData.attributes.userStrings[0]
-          const col = colorData[1]
-
-          //convert color from userstring to THREE color and assign it
-          const threeColor = new THREE.Color("rgb(" + col + ")")
-          const mat = new THREE.LineBasicMaterial({ color: threeColor })
-          child.material = mat
+      if (child.isMesh){
+        if (child.userData.attributes.userStrings && child.userData.attributes.userStrings[0][1] == 'sphere'){
+          child.material = blackMaterial
+        }
+        else {
+          child.material = mirrorMaterial
+          child.castShadow = true; 
+          child.receiveShadow = true;
         }
       }
     })
 
     scene.add(object)
-
-    // zoom to extents
-    for (let child of scene.children) {
-      if (child.type == "Object3D") {
-        zoomCameraToSelection(camera, controls, child.children)
-
-      }
-    }
     console.log("Compute done")
   });
 }
@@ -138,6 +170,23 @@ function animate() {
   requestAnimationFrame(animate);
   controls.update();
 
+  //Rotate Lights
+  const time = Date.now() * 0.001;
+  spotLightRed.position.x = Math.sin( time * 0.7 ) * 100;
+  spotLightRed.position.y = Math.cos( time * 0.5 ) * 100;
+  spotLightRed.position.z = Math.cos( time * 0.3 ) * 100;
+
+  spotLightBlue.position.x = Math.cos( time * 0.3 ) * 100;
+  spotLightBlue.position.y = Math.sin( time * 0.5 ) * 100;
+  spotLightBlue.position.z = Math.sin( time * 0.7 ) * 100;
+
+  spotLightGreen.position.x = Math.sin( time * 0.7 ) * 100;
+  spotLightGreen.position.y = Math.cos( time * 0.3 ) * 100;
+  spotLightGreen.position.z = Math.sin( time * 0.5 ) * 100;
+
+  spotLightOrange.position.x = Math.sin( time * 0.3 ) * 100;
+  spotLightOrange.position.y = Math.cos( time * 0.7 ) * 100;
+  spotLightOrange.position.z = Math.sin( time * 0.5 ) * 100;
 
   renderer.render(scene, camera);
 }
@@ -199,7 +248,7 @@ function zoomCameraToSelection(camera, controls, selection, fitOffset = 1.1) {
 onMounted(async() => {
   init()
   await loadRhino()
-  // compute();
+  compute();
 })
 
 
@@ -207,20 +256,18 @@ onMounted(async() => {
 
 <style scoped>
 
+  #viewport {
+    height: 100%;
+    width: 100%;
+    min-width: 200px;
+    position:inherit;
+  }
 
-#viewport {
-
-  height: 100%;
-  width: 100%;
-  min-width: 200px;
-  position:inherit;
-}
-
-#threejs-container {
-  height: 100%;
-  width: 100%;
-  min-width: 200px;
-  position:inherit;
-}
+  #threejs-container {
+    height: 100%;
+    width: 100%;
+    min-width: 200px;
+    position:inherit;
+  }
 
 </style>

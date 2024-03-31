@@ -15,6 +15,11 @@ import Slider from './components/Slider.vue'
   </div>
 </template>
 
+<script setup>
+
+
+</script>
+
 <style scoped>
 #content {
   display: flex;
