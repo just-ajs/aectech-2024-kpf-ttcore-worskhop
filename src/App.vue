@@ -2,45 +2,42 @@
 import Slider from './components/Slider.vue'
 import Dropdown from './components/Dropdown.vue';
 
-
 const dropdownOptions = [
   { label: "Blue", value: 0 },
   { label: "Pink", value: 1 },
   { label: "Orange", value: 2 }
 ];
+
+import DiscoExample from "./examples/example1Disco.vue"
+
 </script>
 
 <template>
 
 
-    <div id="top-bar">
+  <div id="top-bar">
 
-      <div id="title-container">
-        <img class="logo-image" alt="Iaac logo" src="./assets/graphics/AECtech_24_Barcelona-Banner_sm.png" />
+    <div id="title-container">
+      <img class="logo-image" alt="Iaac logo" src="./assets/graphics/AECtech_24_Barcelona-Banner_sm.png" />
 
-        <h2>
-          My nice app
-        </h2>
+      <h2>
+        My nice app
+      </h2>
+    </div>
+  </div>
+
+  <div id="content">
+    <div id="viewer">
+      <div id="content">
+        <DiscoExample></DiscoExample>
       </div>
     </div>
+  </div>
 
-    <div id="content">
-      <div id="sidebar">
-        <h2>Things</h2>
-        <button>ui example</button>
-        <Slider title="Inputtitle" :min="0" :max="50" :step="2"></Slider>
-        <Dropdown title="Dropdown title" :options="dropdownOptions"></Dropdown>
-
-      </div>
-
-      <div id="viewer">
-      </div>
-    </div>
 
 </template>
 
 <script setup>
-
 
 </script>
 
@@ -69,11 +66,11 @@ const dropdownOptions = [
   justify-content: space-between;
   box-shadow: 0 8px 15px -4px rgba(0, 0, 0, 0.2),
     0 -4px 6px -2px rgba(255, 255, 255, 0.7);
-    position: fixed;
-  top: 0; 
-  left: 0; 
-  width: 100%; 
-  z-index: 1000; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
   padding-bottom: 10px;
 }
 
