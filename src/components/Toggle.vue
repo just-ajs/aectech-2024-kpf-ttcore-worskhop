@@ -13,6 +13,7 @@ var toggleValue = ref(props.val)
 
 function emitValueUpdate()
 {
+  console.log('here', toggleValue)
   emits("update", toggleValue.value, title.value)
 }
 </script>
