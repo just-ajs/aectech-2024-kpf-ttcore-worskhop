@@ -1,0 +1,28 @@
+@import './base.css';
+
+button {
+	border-radius: 340.074px;
+	background: var(--global-neumorphic-light);
+	color: var(--neumorphic-blue);
+	border: none;
+	justify-content: center;
+	align-items: center;
+	padding: 10px 35px;
+	background: color(display-p3 0.8784 0.9059 0.949);
+	box-shadow: -1.417px -1.417px 8.492px 0px #FBFCFE, 1.417px 1.417px 2.834px 0px rgba(84, 103, 135, 0.50);
+	box-shadow: -1.417px -1.417px 8.492px 0px color(display-p3 0.9843 0.9882 0.9961), 1.417px 1.417px 2.834px 0px color(display-p3 0.3451 0.4 0.5176 / 0.50);
+}
+
+
+button:hover {
+	border-radius: 420.303px;
+	background: var(--global-neumorphic-light);
+	color:black;
+	border: none;
+	justify-content: center;
+	align-items: center;
+	padding: 10px 35px;
+	background: color(display-p3 0.8784 0.9059 0.949);
+	box-shadow: -1.751px -1.751px 3.503px 0px rgba(255, 255, 255, 0.50) inset, 1.751px 1.751px 3.503px 0px rgba(84, 103, 135, 0.50) inset;
+	box-shadow: -1.751px -1.751px 3.503px 0px color(display-p3 1 1 1 / 0.50) inset, 1.751px 1.751px 3.503px 0px color(display-p3 0.3451 0.4 0.5176 / 0.50) inset;
+}

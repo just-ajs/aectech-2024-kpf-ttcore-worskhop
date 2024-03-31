@@ -1,5 +1,7 @@
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
+  --global-neumorphic-light:#DEE7F3;
+  --neumorphic-blue:#647BDB;
   --vt-c-white: #ffffff;
   --vt-c-white-soft: #f8f8f8;
   --vt-c-white-mute: #f2f2f2;
