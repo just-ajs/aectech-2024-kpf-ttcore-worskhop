@@ -1,5 +1,13 @@
 <script setup>
 import Slider from './components/Slider.vue'
+import Dropdown from './components/Dropdown.vue';
+
+
+const dropdownOptions = [
+  { label: "Blue", value: 0 },
+  { label: "Pink", value: 1 },
+  { label: "Orange", value: 2 }
+];
 </script>
 
 <template>
@@ -8,6 +16,8 @@ import Slider from './components/Slider.vue'
       <h2>Things</h2>
       <button>ui example</button>
       <Slider title="Inputtitle" :min="0" :max="50" :step="2"></Slider>
+      <Dropdown title="Dropdown title" :options="dropdownOptions" ></Dropdown>
+
     </div>
 
     <div id="viewer">
