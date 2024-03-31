@@ -13,11 +13,10 @@ button {
 	box-shadow: -1.417px -1.417px 8.492px 0px color(display-p3 0.9843 0.9882 0.9961), 1.417px 1.417px 2.834px 0px color(display-p3 0.3451 0.4 0.5176 / 0.50);
 }
 
-
 button:hover {
 	border-radius: 420.303px;
 	background: var(--global-neumorphic-light);
-	color:black;
+	color: black;
 	border: none;
 	justify-content: center;
 	align-items: center;
@@ -25,4 +24,44 @@ button:hover {
 	background: color(display-p3 0.8784 0.9059 0.949);
 	box-shadow: -1.751px -1.751px 3.503px 0px rgba(255, 255, 255, 0.50) inset, 1.751px 1.751px 3.503px 0px rgba(84, 103, 135, 0.50) inset;
 	box-shadow: -1.751px -1.751px 3.503px 0px color(display-p3 1 1 1 / 0.50) inset, 1.751px 1.751px 3.503px 0px color(display-p3 0.3451 0.4 0.5176 / 0.50) inset;
+}
+
+input[type='range'] {
+	-webkit-appearance: none;
+	width: 100%;
+	height: 25px;
+	background: var(--global-neumorphic-light);
+	border-radius: 340.074px;
+	box-shadow: -1.417px -1.417px 8.492px 0px color(display-p3 0.9843 0.9882 0.9961),
+		1.417px 1.417px 2.834px 0px color(display-p3 0.3451 0.4 0.5176 / 0.50);
+}
+
+
+input[type='range']:hover {
+	-webkit-appearance: none;
+	width: 100%;
+	height: 25px;
+	background: var(--global-neumorphic-light);
+	border-radius: 340.074px;
+	box-shadow: -1.751px -1.751px 3.503px 0px color(display-p3 1 1 1 / 0.50) inset, 
+	1.751px 1.751px 3.503px 0px color(display-p3 0.3451 0.4 0.5176 / 0.50) inset;
+}
+
+input[type='range']::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	background: var(--neumorphic-blue);
+	cursor: pointer;
+	box-shadow: -1.417px -1.417px 8.492px 0px color(display-p3 0.9843 0.9882 0.9961),
+		1.417px 1.417px 2.834px 0px color(display-p3 0.3451 0.4 0.5176 / 0.50);
+}
+
+
+input[type='range']:hover::-webkit-slider-thumb {
+	background: black;
+	box-shadow: -1.417px -1.417px 8.492px 0px color(display-p3 0.9843 0.9882 0.9961),
+		1.417px 1.417px 2.834px 0px color(display-p3 0.3451 0.4 0.5176 / 0.50);
 }
