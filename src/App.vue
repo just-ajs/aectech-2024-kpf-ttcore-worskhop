@@ -1,6 +1,11 @@
 <script setup>
+import { ref, onBeforeMount, computed } from "vue"
 import Slider from './components/Slider.vue'
 import Dropdown from './components/Dropdown.vue';
+
+import TopBar from "./components/TopBar.vue"
+import DiscoExample from "./examples/example1Disco.vue"
+import Example2 from "./examples/example2.vue"
 
 const dropdownOptions = [
   { label: "Blue", value: 0 },
@@ -8,38 +13,24 @@ const dropdownOptions = [
   { label: "Orange", value: 2 }
 ];
 
-import DiscoExample from "./examples/example1Disco.vue"
+const selectedExample = ref(0)
+
+function toggleSelectedExample(exampleNum){
+  selectedExample.value = exampleNum
+}
 
 </script>
 
 <template>
 
-
-  <div id="top-bar">
-
-    <div id="title-container">
-      <img class="logo-image" alt="Iaac logo" src="./assets/graphics/AECtech_24_Barcelona-Banner_sm.png" />
-
-      <h2>
-        My nice app
-      </h2>
-    </div>
-  </div>
-
+  <TopBar :selectedExample="selectedExample" @selectedExampleChange="toggleSelectedExample"></TopBar>
   <div id="content">
-    <div id="viewer">
-      <div id="content">
-        <DiscoExample></DiscoExample>
-      </div>
-    </div>
+    <DiscoExample v-if="selectedExample==0"></DiscoExample>
+    <Example2 v-if="selectedExample==1"></Example2>
   </div>
 
 
 </template>
-
-<script setup>
-
-</script>
 
 <style scoped>
 #content {
@@ -83,5 +74,27 @@ import DiscoExample from "./examples/example1Disco.vue"
 .logo-image {
   height: 4rem;
   padding: 0.5rem;
+}
+
+#navigation-tabs {
+  display: flex;
+}
+
+.navigation-tab {
+  padding: 10px 20px; /* Adjust padding */
+  margin-left: 10px; /* Add margin between tabs */
+  color: #007bff; /* Change tab text color to blue */
+  cursor: pointer;
+  text-decoration: underline; /* Add underline */
+}
+
+.navigation-tab:hover {
+  text-decoration: none; /* Remove underline on hover */
+}
+
+.selected-tab {
+  font-weight: bold; /* Make text bold */
+  color: #000; /* Change text color to black */
+  border-bottom: 2px solid #007bff; /* Add bottom border */
 }
 </style>
