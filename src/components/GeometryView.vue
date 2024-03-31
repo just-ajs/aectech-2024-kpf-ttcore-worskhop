@@ -108,10 +108,10 @@ function init() {
   blackMaterial = new THREE.MeshBasicMaterial( { color: 0x000000 } ); 
 
   //Add THREE.js GUI to modify material properties
-  const gui = new GUI();
-  gui.add( mirrorMaterial, 'roughness', 0, 1 );
-  gui.add( mirrorMaterial, 'metalness', 0, 1 );
-  gui.add( renderer, 'toneMappingExposure', 0, 2 ).name( 'exposure' );
+  // const gui = new GUI();
+  // gui.add( mirrorMaterial, 'roughness', 0, 1 );
+  // gui.add( mirrorMaterial, 'metalness', 0, 1 );
+  // gui.add( renderer, 'toneMappingExposure', 0, 2 ).name( 'exposure' );
 
   //Rotate scene
   controls.autoRotate = true;
