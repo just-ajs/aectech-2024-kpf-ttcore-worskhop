@@ -2,8 +2,8 @@
 
 #app {
   margin: 0 ;
-  padding: 1rem;
   font-weight: normal;
+  height: 100vh
 }
 
 a,
@@ -24,11 +24,5 @@ a,
   body {
     display: flex;
     place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
   }
 }

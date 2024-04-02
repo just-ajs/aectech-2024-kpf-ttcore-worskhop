@@ -2,7 +2,7 @@
   <div id="viewport">
     <!-- To this element we will append our 3d scene. -->
     <div id="threejs-container"></div>
-    
+
   </div>
 </template>
 
@@ -52,7 +52,7 @@ function init() {
   renderer = new THREE.WebGLRenderer()
   renderer.setSize(container.offsetWidth, container.offsetHeight)
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 0.3
+  renderer.toneMappingExposure = 0.8
 
   // We are taking element defined in <template> and appending our render to it. 
   container.appendChild(renderer.domElement)
@@ -108,10 +108,13 @@ function init() {
   blackMaterial = new THREE.MeshBasicMaterial( { color: 0x000000 } ); 
 
   //Add THREE.js GUI to modify material properties
-  // const gui = new GUI();
-  // gui.add( mirrorMaterial, 'roughness', 0, 1 );
-  // gui.add( mirrorMaterial, 'metalness', 0, 1 );
-  // gui.add( renderer, 'toneMappingExposure', 0, 2 ).name( 'exposure' );
+  const gui = new GUI();
+  gui.domElement.style.position = 'absolute';
+  gui.domElement.style.top = '95px';
+  gui.domElement.style.right = '20px'
+  gui.add( mirrorMaterial, 'roughness', 0, 1 );
+  gui.add( mirrorMaterial, 'metalness', 0, 1 );
+  gui.add( renderer, 'toneMappingExposure', 0, 2 ).name( 'exposure' );
 
   //Rotate scene
   controls.autoRotate = true;
@@ -249,7 +252,7 @@ function zoomCameraToSelection(camera, controls, selection, fitOffset = 1.1) {
 onMounted(async() => {
   init()
   await loadRhino()
-  //compute();
+  compute();
 })
 
 
@@ -270,5 +273,6 @@ onMounted(async() => {
     min-width: 200px;
     position:inherit;
   }
+  #gui { position: absolute; top: 2px; left: 2px }
 
 </style>

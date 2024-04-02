@@ -28,7 +28,7 @@ const divisionsVertSliderName = ref("divisionsVert")
 const divisionsVertValue = ref(20)
 
 const divisionsHorzSliderName = ref("divisionsHorz")
-const divisionsHorzValue = ref(20)
+const divisionsHorzValue = ref(4)
 
 //define inputs
 let inputs = ref({
@@ -53,12 +53,13 @@ function updateValue(newValue, parameterName) {
 
 #sidebar {
   width: 310px;
-  padding: 10px;
+  padding: 20px;
   flex-shrink: 0; 
 }
 
 #viewer { 
-  width: 500px
+  width: 100%;
+  margin: 20px
 }
 
 </style>
