@@ -1,13 +1,15 @@
 <template>
   <div id="top-bar">
     <div id="title-container">
-      <img class="logo-image" alt="Iaac logo" src="../assets/graphics/AECtech_24_Barcelona-Banner_sm.png" />
-      <h2>My nice app</h2>
-      <div id="navigation-tabs">
-        <div :class="{ 'selected-tab': selectedExample === 0, 'navigation-tab': selectedExample !== 0 }" @click="toggleExample(0)">Example 1</div>
-        <div :class="{ 'selected-tab': selectedExample === 1, 'navigation-tab': selectedExample !== 1 }" @click="toggleExample(1)">Example 2</div>
+      <div style="display: flex; align-items: center">
+        <img class="logo-image" alt="Iaac logo" src="../assets/graphics/AECtech_24_Barcelona-Banner_sm.png" />
+        <h2>My nice app</h2>
+        <div id="navigation-tabs">
+          <div :class="{ 'selected-tab': selectedExample === 0, 'navigation-tab': selectedExample !== 0 }" @click="toggleExample(0)">Example 1</div>
+          <div :class="{ 'selected-tab': selectedExample === 1, 'navigation-tab': selectedExample !== 1 }" @click="toggleExample(1)">Example 2</div>
+        </div>
       </div>
-      <Toggle @update="changeMode"></Toggle>
+      <Toggle @update="changeMode" id="toggle"></Toggle>
     </div>
   </div>
 </template>
@@ -58,6 +60,12 @@ function changeMode(value, title){
   display: flex;
   align-items: center;
   margin-right: 1.5rem;
+  width: 100vw;
+  justify-content: space-between 
+}
+
+#toggle {
+  right: 0px
 }
 
 .logo-image {
@@ -71,10 +79,10 @@ function changeMode(value, title){
 }
 
 .navigation-tab {
-  color: #007bff; 
+  color: var(--vt-c-text-light-2); 
   cursor: pointer;
   text-decoration: underline; 
-  margin-right: 20px
+  margin-right: 20px;
 }
 
 .navigation-tab:hover {
@@ -83,8 +91,8 @@ function changeMode(value, title){
 
 .selected-tab {
   font-weight: bold; 
-  color: #000; 
-  border-bottom: 2px solid #007bff; 
+  color: var(--neumorphic-blue);; 
+  border-bottom: 2px solid var(--neumorphic-blue);; 
   margin-right: 20px
 }
 </style>

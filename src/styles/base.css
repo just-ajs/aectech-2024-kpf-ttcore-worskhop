@@ -49,6 +49,8 @@
 
     --color-heading: var(--vt-c-text-dark-1);
     --color-text: var(--vt-c-text-dark-2);
+    --neumorphic-blue:rgb(237, 240, 252);
+    --vt-c-text-light-2:  rgba(235, 235, 235, 0.64);
 }
 
 *,

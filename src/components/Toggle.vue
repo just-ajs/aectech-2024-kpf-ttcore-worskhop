@@ -13,7 +13,6 @@ var toggleValue = ref(props.val)
 
 function emitValueUpdate()
 {
-  console.log('here', toggleValue)
   emits("update", toggleValue.value, title.value)
 }
 </script>
@@ -21,14 +20,13 @@ function emitValueUpdate()
 
 <template>
   <form class = "definition-input">
-    <label class="input-title" for="toggle"> {{ title }}: {{  toggleValue }}</label>
+    <label class="input-title" for="toggle"> {{toggleValue ? 'Dark Mode' : 'Light Mode'}}</label>
 
-    <div class="checkbox-wrapper-22">
+    <div style="margin-top: -10px">
       <label class="switch" for="checkbox">
         <input type="checkbox" id="checkbox" 
           v-model="toggleValue" 
           v-on:change="emitValueUpdate"/>
-
         <div class="slider round"></div>
       </label>
     </div>
@@ -36,6 +34,13 @@ function emitValueUpdate()
 </template>
 
 <style scoped>
+.definition-input {
+  display: flex;
+  align-items: center; /* Aligns items vertically center */
+  gap: 0px; /* Adds some space between the label and the switch */
+  flex-direction: column;
+}
+
 .switch {
   position: relative;
   display: inline-block;
