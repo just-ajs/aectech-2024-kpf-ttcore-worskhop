@@ -6,6 +6,11 @@ import Dropdown from './components/Dropdown.vue';
 import TopBar from "./components/TopBar.vue"
 import DiscoExample from "./examples/example1Disco.vue"
 import Example2 from "./examples/example2.vue"
+import Loading from "./components/Loading.vue"
+
+//Import and define Store
+import {useComputeStore} from "@/stores/computeStore.js"
+const computeStore = useComputeStore()
 
 const dropdownOptions = [
   { label: "Blue", value: 0 },
@@ -28,8 +33,7 @@ function toggleSelectedExample(exampleNum){
     <DiscoExample v-if="selectedExample==0"></DiscoExample>
     <Example2 v-if="selectedExample==1"></Example2>
   </div>
-
-
+  <Loading class="loader-overlay" v-if="computeStore.computing"></Loading>
 </template>
 
 <style scoped>
@@ -97,5 +101,17 @@ function toggleSelectedExample(exampleNum){
   font-weight: bold; /* Make text bold */
   color: #000; /* Change text color to black */
   border-bottom: 2px solid #007bff; /* Add bottom border */
+}
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0; 
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100000
 }
 </style>
