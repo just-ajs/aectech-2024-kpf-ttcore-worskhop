@@ -62,18 +62,12 @@ function init() {
     document.getElementById("threejs-container").appendChild(renderer.domElement);
 
     // camera
-    THREE.Object3D.DefaultUp = new THREE.Vector3(0, 0, 1);
-    camera = camera = new THREE.OrthographicCamera(
-        -frustumSize * aspectRatio / 2, // left
-        frustumSize * aspectRatio / 2,  // right
-        frustumSize / 2,               // top
-        -frustumSize / 2,              // bottom
-        -1000,                         // near
-        1000                           // far
-    );
-    camera.position.set(100, 25, 20);//setup the right camera to start with!
-    camera.up.set(0, 0, 1);
-    camera.lookAt(0, 0, 0);
+      // Set up camera - https://threejs.org/docs/#api/en/cameras/PerspectiveCamera
+    camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000 );
+	camera.position.set(100, -100, 0)
+    camera.lookAt(0,0,0)
+    camera.up.set(0, 0, 1)
+
 
     // scene
     scene = new THREE.Scene();
@@ -92,22 +86,31 @@ function init() {
 				hemiLight.position.set( lightX, lightY,lightZ );
 				scene.add( hemiLight );
 
+
+    let dirLightX = 20;
+    let dirLightY= 50;
+    let dirLightZ = 50;
     const dirLight = new THREE.DirectionalLight( 0xFFDB83, 3 );
-    dirLight.position.set( 10, 100, 100 );
-    dirLight.lookAt(0, 0, 0)
+    dirLight.position.set(dirLightX, dirLightY, dirLightZ);
+    dirLight.lookAt(0, 20, 0)
     dirLight.castShadow = true;
-    dirLight.shadow.mapSize.width = 5024;
-    dirLight.shadow.mapSize.height = 5024;
-    dirLight.shadow.camera.near = 0.1;
-    dirLight.shadow.camera.far = 1000;
+    // dirLight.shadow.mapSize.width = 10024;
+    // dirLight.shadow.mapSize.height = 10024;
+    // dirLight.shadow.camera.near = 0.1;
+    // dirLight.shadow.camera.far = 10000;
     scene.add( dirLight );
 
-    const geometry = new THREE.SphereGeometry( 1,10,10); 
+    const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } ); 
 
-const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } ); 
-const sphere = new THREE.Mesh( geometry, material ); scene.add( sphere );
-sphere.position.set(lightX, lightY, lightZ);
-scene.add(sphere)
+    // const geometry = new THREE.SphereGeometry( 1,10,10); 
+    // const sphere = new THREE.Mesh( geometry, material ); scene.add( sphere );
+    // sphere.position.set(lightX, lightY, lightZ);
+    // //scene.add(sphere)
+
+    const directLightgeometry = new THREE.SphereGeometry( 1,10,10); 
+    const directLightSphere = new THREE.Mesh( directLightgeometry, material );
+    directLightSphere.position.set(dirLightX, dirLightY, dirLightZ);
+    scene.add(directLightSphere)
 
     // // add floor material
     // const shadowMaterial = new THREE.ShadowMaterial();
@@ -174,11 +177,9 @@ async function compute() {
                 child.castShadow = true;
                 child.receiveShadow = true;
                 // Create a material with the texture
-                const material = new THREE.MeshPhongMaterial({
+                const material = new THREE.MeshStandardMaterial({
                     map: texture,
-                    side: THREE.DoubleSide,
-                    receiveShadow: true,
-                    castShadow: true,
+                    side: THREE.DoubleSide
                 });
 
 

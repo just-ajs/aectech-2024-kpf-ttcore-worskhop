@@ -3,9 +3,10 @@ import { ref } from "vue";
 
 // Define props coming from parent component
 const props = defineProps(["title", "options"]);
-const title = ref(props.title);
 
-// Define events that will be emitted to parent
+const title = ref(props.title)
+
+// Define events that will be accessible from parent component
 const emits = defineEmits(["update"]);
 
 // Value that is binded with selection option

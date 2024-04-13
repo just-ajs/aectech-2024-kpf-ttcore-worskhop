@@ -14,6 +14,11 @@
 
       <Slider :title="horizontalRotationSliderName" 
       :min="0" max="15" :step="1" :val="horizontalRotationValue" @update="updateValue"></Slider>
+
+      <Dropdown :title="shapeDrodDownName"
+      :options="dropdownOptions" :val="shapeIndex" @update="updateValue"></Dropdown>
+
+
     </div>
   
     <div id="viewer">
@@ -25,6 +30,7 @@
   import { ref, onBeforeMount, computed } from "vue"
   import GeometryView from "../components/MinimalisticGeometryView.vue"
   import Slider from '../components/Slider.vue'
+  import Dropdown from "../components/Dropdown.vue"
   
   //define path to grasshopper script
   import def from "../assets/wall.gh"
@@ -42,13 +48,24 @@
 
   const horizontalRotationSliderName = ref("HorizontalRotation")
   const horizontalRotationValue = ref(0)
+
+  const shapeDrodDownName = ref("Shape")
+  const shapeIndex = ref(0)
+  const dropdownOptions = ref([
+    {label: "Standard", value: 0},
+    {label: "Concave", value: 1},
+    {label: "Convex", value: 2}
+  ])
+
+
   
   //define inputs
   let inputs = ref({
     [heightSliderName.value]: heightSliderValue.value ,
     [widthSliderName.value] : widthSliderValue.value ,
     [verticalRotationSliderName.value] : verticalRotationValue.value,
-    [horizontalRotationSliderName.value] : horizontalRotationValue.value
+    [horizontalRotationSliderName.value] : horizontalRotationValue.value,
+    [shapeDrodDownName.value] : shapeIndex.value
   });
   
   function updateValue(newValue, parameterName) {
