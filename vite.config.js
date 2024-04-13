@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [
     vue(),
   ],
-  assetsInclude: ['**/*.hdr', '**/*.gh'],
+  assetsInclude: ['**/*.hdr', '**/*.gh', '**/*.PNG', '**/*.jpg'],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
