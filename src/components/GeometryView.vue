@@ -8,7 +8,7 @@
 
 <script setup>
 // Imports;
-import { onMounted, onUpdated, watch } from 'vue'
+import { onMounted, onUpdated, watch, onUnmounted } from 'vue'
 import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import { Rhino3dmLoader } from "three/addons/loaders/3DMLoader.js"
@@ -30,7 +30,6 @@ const emits = defineEmits(["updateMetadata"]);
 
 
 watch(() => props.data, (newValue) => {
-  console.log(props.data)
   if (newValue) {
     compute();
   }
@@ -38,7 +37,7 @@ watch(() => props.data, (newValue) => {
 
 
 // Three js objects
-let renderer, camera, scene,  controls, container, spotLight
+let renderer, camera, scene,  controls, container, gui
 let mirrorMaterial, blackMaterial
 let spotLightRed, spotLightBlue, spotLightGreen, spotLightOrange
 
@@ -108,7 +107,7 @@ function init() {
   blackMaterial = new THREE.MeshBasicMaterial( { color: 0x000000 } ); 
 
   //Add THREE.js GUI to modify material properties
-  const gui = new GUI();
+  gui = new GUI();
   gui.domElement.style.position = 'absolute';
   gui.domElement.style.top = '95px';
   gui.domElement.style.right = '20px'
@@ -210,49 +209,16 @@ function onWindowResize() {
 
 }
 
-/**
- * Helper function that behaves like rhino's "zoom to selection", but for three.js!
- */
-function zoomCameraToSelection(camera, controls, selection, fitOffset = 1.1) {
-
-  const box = new THREE.Box3();
-
-  for (const object of selection) {
-    if (object.isLight) continue
-    box.expandByObject(object);
-  }
-
-  const size = box.getSize(new THREE.Vector3());
-  const center = box.getCenter(new THREE.Vector3());
-
-  const maxSize = Math.max(size.x, size.y, size.z);
-  const fitHeightDistance = maxSize / (2 * Math.atan(Math.PI * camera.fov / 360));
-  const fitWidthDistance = fitHeightDistance / camera.aspect;
-  const distance = fitOffset * Math.max(fitHeightDistance, fitWidthDistance);
-
-  const direction = controls.target.clone()
-    .sub(camera.position)
-    .normalize()
-    .multiplyScalar(distance);
-  controls.maxDistance = distance * 10;
-  controls.target.copy(center);
-
-  camera.near = distance / 100;
-  camera.far = distance * 100;
-  camera.updateProjectionMatrix();
-  camera.position.copy(controls.target).sub(direction);
-
-  controls.update();
-
-}
-
-
-
 // This will be run whenever this component is instantiated
 onMounted(async() => {
   init()
   await loadRhino()
   compute();
+})
+
+//remove three.js gui panel when the component is unmounted
+onUnmounted(async() => {
+  gui.destroy()
 })
 
 
