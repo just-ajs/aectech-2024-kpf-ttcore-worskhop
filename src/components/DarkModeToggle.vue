@@ -20,7 +20,7 @@ function emitValueUpdate()
 
 <template>
   <form class = "definition-input">
-    <label class="input-title" for="toggle"> {{title}}: {{toggleValue}}</label>
+    <label class="input-title" for="toggle"> {{toggleValue ? 'Dark Mode' : 'Light Mode'}}</label>
 
     <div style="margin-top: -10px">
       <label class="switch" :for="title">
@@ -36,7 +36,7 @@ function emitValueUpdate()
 <style scoped>
 .definition-input {
   display: flex;
-  align-items: left;
+  align-items: center; /* Aligns items vertically center */
   gap: 0px; /* Adds some space between the label and the switch */
   flex-direction: column;
 }
@@ -82,7 +82,7 @@ function emitValueUpdate()
 }
 
 input:checked + .slider {
-  background-color: var(--global-neumorphic-light);
+  background-color: black;
 }
 
 input:checked + .slider:before {

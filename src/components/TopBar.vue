@@ -9,14 +9,14 @@
           <div :class="{ 'selected-tab': selectedExample === 1, 'navigation-tab': selectedExample !== 1 }" @click="toggleExample(1)">Example 2</div>
         </div>
       </div>
-      <Toggle @update="changeMode" id="toggle"></Toggle>
+      <DarkModeToggle @update="changeMode" :title="'darkMode'" id="toggle" ></DarkModeToggle>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import Toggle from "./Toggle.vue"
+import DarkModeToggle from "./DarkModeToggle.vue"
 
 const props = defineProps(["selectedExample"]);
 let selectedExample = ref(props.selectedExample)
