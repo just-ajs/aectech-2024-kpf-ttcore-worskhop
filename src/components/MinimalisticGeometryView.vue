@@ -96,12 +96,10 @@ function init() {
     dirLight.position.set( 10, 100, 100 );
     dirLight.lookAt(0, 0, 0)
     dirLight.castShadow = true;
-    dirLight.shadow.camera.top = 40;
-    dirLight.shadow.camera.bottom = - 40;
-    dirLight.shadow.camera.left = - 40;
-    dirLight.shadow.camera.right = 40;
+    dirLight.shadow.mapSize.width = 5024;
+    dirLight.shadow.mapSize.height = 5024;
     dirLight.shadow.camera.near = 0.1;
-    dirLight.shadow.camera.far = 100;
+    dirLight.shadow.camera.far = 1000;
     scene.add( dirLight );
 
     const geometry = new THREE.SphereGeometry( 1,10,10); 
@@ -178,7 +176,9 @@ async function compute() {
                 // Create a material with the texture
                 const material = new THREE.MeshPhongMaterial({
                     map: texture,
-                    side: THREE.DoubleSide // If needed
+                    side: THREE.DoubleSide,
+                    receiveShadow: true,
+                    castShadow: true,
                 });
 
 
