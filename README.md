@@ -1,6 +1,16 @@
-# aectech-2024-kpf-ttcore-workshop
+# Grasshopper on the Web: Creating Websites with Rhino.Compute, Vue, and Three.js. 
 
-This template should help get you started developing with Vue 3 in Vite.
+Learn to build a custom web interface for real-time control and display of Grasshopper definitions. In this workshop, you will learn how to prepare your Grasshopper scripts to run on the web with Rhino.Compute. You will also explore the basics of Vue.js, a user-friendly web framework, enabling you to create a beautiful and reusable web interfaces that can control your Grasshopper definition inputs. Additionally, you will gain experience with Three.js web geometry library to develop dynamic and custom 3D scenes in your website. 
+
+## Prerequisites
+[Installation Instructions](https://docs.google.com/document/d/17hXwG_7kRkxQQLEcFkq0k_4eD659sB39gbIIzKDqi_0)
+- Rhino 7
+- Hops
+- Visual Studio Code
+- Node
+- Git
+- Github
+
 
 ## Recommended IDE Setup
 
