@@ -15,18 +15,18 @@
       <Slider :title="horizontalRotationSliderName" 
       :min="0" max="15" :step="1" :val="horizontalRotationValue" @update="updateValue"></Slider>
 
-      <Dropdown :title="shapeDrodDownName"
+      <Dropdown :title="shapeDropDownName"
       :options="dropdownOptions" :val="shapeIndex" @update="updateValue"></Dropdown>
-
-
+      
     </div>
   
     <div id="viewer">
       <GeometryView :data="inputs" :path="path"></GeometryView>
     </div>
-  </template>
+
+</template>
   
-  <script setup>
+<script setup>
   import { ref, onBeforeMount, computed } from "vue"
   import GeometryView from "../components/MinimalisticGeometryView.vue"
   import Slider from '../components/Slider.vue'
@@ -49,7 +49,7 @@
   const horizontalRotationSliderName = ref("HorizontalRotation")
   const horizontalRotationValue = ref(0)
 
-  const shapeDrodDownName = ref("Shape")
+  const shapeDropDownName = ref("Shape")
   const shapeIndex = ref(0)
   const dropdownOptions = ref([
     {label: "Standard", value: 0},
@@ -65,7 +65,7 @@
     [widthSliderName.value] : widthSliderValue.value ,
     [verticalRotationSliderName.value] : verticalRotationValue.value,
     [horizontalRotationSliderName.value] : horizontalRotationValue.value,
-    [shapeDrodDownName.value] : shapeIndex.value
+    [shapeDropDownName.value] : shapeIndex.value
   });
   
   function updateValue(newValue, parameterName) {

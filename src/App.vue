@@ -4,7 +4,7 @@ import Slider from './components/Slider.vue'
 import Dropdown from './components/Dropdown.vue';
 
 import TopBar from "./components/TopBar.vue"
-import DiscoExample from "./examples/example1Disco.vue"
+import DiscoExample from "./examples/example1.vue"
 import Example2 from "./examples/example2.vue"
 import Loading from "./components/Loading.vue"
 
