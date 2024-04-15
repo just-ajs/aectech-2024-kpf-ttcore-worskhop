@@ -64,7 +64,7 @@ function init() {
     // camera
       // Set up camera - https://threejs.org/docs/#api/en/cameras/PerspectiveCamera
     camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000 );
-	camera.position.set(100, -100, 0)
+	camera.position.set(50, 50, 20)
     camera.lookAt(0,0,0)
     camera.up.set(0, 0, 1)
 
@@ -92,12 +92,15 @@ function init() {
     let dirLightZ = 50;
     const dirLight = new THREE.DirectionalLight( 0xFFDB83, 3 );
     dirLight.position.set(dirLightX, dirLightY, dirLightZ);
-    dirLight.lookAt(0, 20, 0)
+    dirLight.lookAt(0, 0, 15)
     dirLight.castShadow = true;
-    // dirLight.shadow.mapSize.width = 10024;
-    // dirLight.shadow.mapSize.height = 10024;
-    // dirLight.shadow.camera.near = 0.1;
-    // dirLight.shadow.camera.far = 10000;
+     dirLight.shadow.camera.left = -15;   // default is -5
+     dirLight.shadow.camera.right = 15;   // default is 5
+    dirLight.shadow.camera.top = 20;     // default is 5
+    // dirLight.shadow.camera.bottom = -100; // default is -5
+
+     dirLight.shadow.camera.near = 0.1;
+    dirLight.shadow.camera.far = 500;
     scene.add( dirLight );
 
     const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } ); 
@@ -121,20 +124,21 @@ function init() {
 
 
     // add shadow plane
-    // const plane = new THREE.Mesh(
-    //     new THREE.PlaneGeometry(1000, 50),
-    //     new THREE.ShadowMaterial( {
-    //         color:  'skyblue',
-    //         transparent: true,
-    //         opacity: 0.75,
-    //         side: THREE.DoubleSide,
-    //     } ),
-    // );
+    const plane = new THREE.Mesh(
+        new THREE.PlaneGeometry(1000, 50),
+        new THREE.ShadowMaterial( {
+            color:  "rgb(194, 191, 194)",
+            transparent: true,
+            opacity: 0.5,
+            side: THREE.DoubleSide,
+        } ),
+    );
     // plane.position.y = - 3;
     // plane.rotation.x = - Math.PI;
     // plane.scale.setScalar( 10 );
-    // plane.receiveShadow = true;
-    // scene.add( plane );
+    plane.receiveShadow = true;
+     scene.add( plane );
+
     texture = new THREE.TextureLoader().load(texturePath, function() {
     console.log('Texture loaded successfully');
     }, undefined, function(err) {
