@@ -1,22 +1,7 @@
 <template>
 
     <div id="sidebar">
-      <Slider :title="heightSliderName" 
-      :min="1" max="20" :step="1" :val="heightSliderValue" 
-      @update="updateValue"></Slider>
 
-      <Slider 
-      :title="widthSliderName" 
-      :min="1" max="30" :step="1" :val="widthSliderValue" @update="updateValue"></Slider>
-      
-      <Slider :title="verticalRotationSliderName" 
-      :min="0" max="30" :step="1" :val="verticalRotationValue" @update="updateValue"></Slider>
-
-      <Slider :title="horizontalRotationSliderName" 
-      :min="0" max="15" :step="1" :val="horizontalRotationValue" @update="updateValue"></Slider>
-
-      <Dropdown :title="shapeDropDownName"
-      :options="dropdownOptions" :val="shapeIndex" @update="updateValue"></Dropdown>
       
     </div>
   
@@ -35,37 +20,11 @@
   //define path to grasshopper script
   import def from "../assets/wall.gh"
   const path = def
-  
-  //define input names and values
-  const heightSliderName = ref("Height")
-  const heightSliderValue = ref(20)
-  
-  const widthSliderName = ref("Width")
-  const widthSliderValue = ref(20)
-  
-  const verticalRotationSliderName = ref("VerticalRotation")
-  const verticalRotationValue = ref(0)
 
-  const horizontalRotationSliderName = ref("HorizontalRotation")
-  const horizontalRotationValue = ref(0)
-
-  const shapeDropDownName = ref("Shape")
-  const shapeIndex = ref(0)
-  const dropdownOptions = ref([
-    {label: "Standard", value: 0},
-    {label: "Concave", value: 1},
-    {label: "Convex", value: 2}
-  ])
-
-
-  
+ 
   //define inputs
-  let inputs = ref({
-    [heightSliderName.value]: heightSliderValue.value ,
-    [widthSliderName.value] : widthSliderValue.value ,
-    [verticalRotationSliderName.value] : verticalRotationValue.value,
-    [horizontalRotationSliderName.value] : horizontalRotationValue.value,
-    [shapeDropDownName.value] : shapeIndex.value
+   let inputs = ref({
+
   });
   
   function updateValue(newValue, parameterName) {
