@@ -4,7 +4,7 @@ import Slider from './components/Slider.vue'
 import Dropdown from './components/Dropdown.vue';
 
 import TopBar from "./components/TopBar.vue"
-import DiscoExample from "./examples/example1.vue"
+import Example1 from "./examples/example1.vue"
 import Example2 from "./examples/example2.vue"
 import Loading from "./components/Loading.vue"
 
@@ -30,7 +30,7 @@ function toggleSelectedExample(exampleNum){
 
   <TopBar :selectedExample="selectedExample" @selectedExampleChange="toggleSelectedExample"></TopBar>
   <div id="content">
-    <DiscoExample v-if="selectedExample==0"></DiscoExample>
+    <Example1 v-if="selectedExample==0"></Example1>
     <Example2 v-if="selectedExample==1"></Example2>
   </div>
   <Loading class="loader-overlay" v-if="computeStore.computing"></Loading>
