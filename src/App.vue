@@ -1,7 +1,5 @@
 <script setup>
-import { ref, onBeforeMount, computed } from "vue"
-import Slider from './components/Slider.vue'
-import Dropdown from './components/Dropdown.vue';
+import { ref } from "vue"
 
 import TopBar from "./components/TopBar.vue"
 import Example1 from "./examples/example1.vue"
@@ -11,12 +9,6 @@ import Loading from "./components/Loading.vue"
 //Import and define Store
 import {useComputeStore} from "@/stores/computeStore.js"
 const computeStore = useComputeStore()
-
-const dropdownOptions = [
-  { label: "Blue", value: 0 },
-  { label: "Pink", value: 1 },
-  { label: "Orange", value: 2 }
-];
 
 const selectedExample = ref(0)
 
