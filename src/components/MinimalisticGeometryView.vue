@@ -12,8 +12,6 @@ import { onMounted, onUpdated, watch } from 'vue'
 import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import { Rhino3dmLoader } from "three/addons/loaders/3DMLoader.js"
-import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
-import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 import { runCompute } from "@/scripts/compute.js"
 import { loadRhino } from "@/scripts/compute.js";
 
@@ -83,8 +81,8 @@ function init() {
 
     // create a spotlight with shadow camera parameters
     const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x8d8d8d, 2 );
-				hemiLight.position.set( lightX, lightY,lightZ );
-				scene.add( hemiLight );
+    hemiLight.position.set( lightX, lightY,lightZ );
+    scene.add( hemiLight );
 
 
     let dirLightX = 20;
@@ -94,10 +92,9 @@ function init() {
     dirLight.position.set(dirLightX, dirLightY, dirLightZ);
     dirLight.lookAt(0, 0, 15)
     dirLight.castShadow = true;
-     dirLight.shadow.camera.left = -15;   // default is -5
-     dirLight.shadow.camera.right = 15;   // default is 5
-    dirLight.shadow.camera.top = 20;     // default is 5
-    // dirLight.shadow.camera.bottom = -100; // default is -5
+     dirLight.shadow.camera.left = -15;
+     dirLight.shadow.camera.right = 15; 
+    dirLight.shadow.camera.top = 20;
 
      dirLight.shadow.camera.near = 0.1;
     dirLight.shadow.camera.far = 500;
@@ -105,22 +102,10 @@ function init() {
 
     const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } ); 
 
-    // const geometry = new THREE.SphereGeometry( 1,10,10); 
-    // const sphere = new THREE.Mesh( geometry, material ); scene.add( sphere );
-    // sphere.position.set(lightX, lightY, lightZ);
-    // //scene.add(sphere)
-
     const directLightgeometry = new THREE.SphereGeometry( 1,10,10); 
     const directLightSphere = new THREE.Mesh( directLightgeometry, material );
     directLightSphere.position.set(dirLightX, dirLightY, dirLightZ);
     scene.add(directLightSphere)
-
-    // // add floor material
-    // const shadowMaterial = new THREE.ShadowMaterial();
-    // shadowMaterial.opacity = 5;
-    // shadowMaterial.blending = THREE.MultiplyBlending;
-
-    // Ground
 
 
     // add shadow plane
@@ -133,9 +118,6 @@ function init() {
             side: THREE.DoubleSide,
         } ),
     );
-    // plane.position.y = - 3;
-    // plane.rotation.x = - Math.PI;
-    // plane.scale.setScalar( 10 );
     plane.receiveShadow = true;
      scene.add( plane );
 
@@ -145,8 +127,6 @@ function init() {
         console.error('Error loading texture:', err);
     });
     THREE.Object3D.DEFAULT_UP.set(0, 0, 1);
-
-    // add fun shape
     animate();
 }
 
