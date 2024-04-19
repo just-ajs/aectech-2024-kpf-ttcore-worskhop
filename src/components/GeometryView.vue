@@ -63,7 +63,6 @@ function init() {
 
   // Create scene - https://threejs.org/docs/?q=scene#api/en/scenes/Scene
   scene = new THREE.Scene()
-  scene.background = new THREE.Color("#f5f6fa")
   scene.rotation.y = 0.5;
 
   // orbit controls - https://threejs.org/docs/#examples/en/controls/OrbitControls
@@ -90,13 +89,6 @@ function init() {
   spotLightOrange.position.set( 0, -100, -100);
   scene.add( spotLightOrange );
 
-  //Load 360 Image for background and envMap
-  new RGBELoader().load(context, function (texture){
-    texture.mapping = THREE.EquirectangularReflectionMapping;
-    mirrorMaterial.envMap = texture
-    scene.background = texture;
-  })
-
   //Create Materials
   mirrorMaterial = new THREE.MeshStandardMaterial( {
     roughness: 0,
@@ -105,6 +97,13 @@ function init() {
   });
 
   blackMaterial = new THREE.MeshBasicMaterial( { color: 0x000000 } ); 
+
+  //Load 360 Image for background and envMap
+  new RGBELoader().load(context, function (texture){
+    texture.mapping = THREE.EquirectangularReflectionMapping;
+    mirrorMaterial.envMap = texture
+    scene.background = texture;
+  })
 
   //Add THREE.js GUI to modify material properties
   gui = new GUI();
