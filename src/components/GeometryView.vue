@@ -212,7 +212,7 @@ function onWindowResize() {
 onMounted(async() => {
   init()
   await loadRhino()
-  compute();
+  //compute();
 })
 
 //remove three.js gui panel when the component is unmounted

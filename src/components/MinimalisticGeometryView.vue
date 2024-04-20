@@ -242,7 +242,6 @@ function zoomCameraToSelection(camera, controls, selection, fitOffset = 1.1) {
 onMounted(async () => {
     init()
     await loadRhino()
-    //compute();
 })
 
 

@@ -6,7 +6,7 @@
         <h2>Grasshopper on the Web</h2>
         <div id="navigation-tabs">
           <div :class="{ 'selected-tab': selectedExample === 0, 'navigation-tab': selectedExample !== 0 }" @click="toggleExample(0)">Example 1</div>
-          <div :class="{ 'selected-tab': selectedExample === 1, 'navigation-tab': selectedExample !== 1 }" @click="toggleExample(1)">Example 2</div>
+          <div :class="{ 'selected-tab': selectedExample === 1, 'navigation-tab': selectedExample !== 1 }" @click="toggleExample(1)">Upload Example</div>
         </div>
       </div>
       <DarkModeToggle @update="changeMode" :title="'darkMode'" id="toggle" ></DarkModeToggle>
