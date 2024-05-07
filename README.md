@@ -8,9 +8,6 @@ Learn to build a custom web interface for real-time control and display of Grass
 
 
 
-## Slides
-https://docs.google.com/presentation/d/1kQS1eDlVabVp1Tn3BGf5KWl472_4omvTNg4js6gBjek/edit#slide=id.g2cb5cba85cb_0_515
-
 ## Prerequisites
 [Installation Instructions](https://docs.google.com/document/d/17hXwG_7kRkxQQLEcFkq0k_4eD659sB39gbIIzKDqi_0)
 - Rhino 7
