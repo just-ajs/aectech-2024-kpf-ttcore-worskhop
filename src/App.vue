@@ -3,7 +3,7 @@ import { ref } from "vue"
 
 import TopBar from "./components/TopBar.vue"
 import Example1 from "./examples/example1.vue"
-import Example2 from "./examples/example2.vue"
+import Example2 from "./examples/example2_completed.vue"
 import Loading from "./components/Loading.vue"
 
 //Import and define Store

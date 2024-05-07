@@ -38,16 +38,16 @@
   
   //define input names and values
   const heightSliderName = ref("Height")
-  const heightSliderValue = ref(20)
+  const heightSliderValue = ref(16)
   
   const widthSliderName = ref("Width")
-  const widthSliderValue = ref(20)
+  const widthSliderValue = ref(29)
   
   const verticalRotationSliderName = ref("VerticalRotation")
-  const verticalRotationValue = ref(0)
+  const verticalRotationValue = ref(12)
 
   const horizontalRotationSliderName = ref("HorizontalRotation")
-  const horizontalRotationValue = ref(0)
+  const horizontalRotationValue = ref(4)
 
   const shapeDropDownName = ref("Shape")
   const shapeIndex = ref(0)
