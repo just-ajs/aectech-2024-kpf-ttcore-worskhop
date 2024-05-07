@@ -1,6 +1,12 @@
+![download](https://github.com/just-ajs/aectech-2024-kpf-ttcore-worskhop/assets/35227625/da2c1f10-eb52-4463-9526-8ad3c58244a4)
+
 # Grasshopper on the Web: Creating Websites with Rhino.Compute, Vue, and Three.js. 
 
+This is repository with materials used during the AEC TECH Barcelona workshops. 
+
 Learn to build a custom web interface for real-time control and display of Grasshopper definitions. In this workshop, you will learn how to prepare your Grasshopper scripts to run on the web with Rhino.Compute. You will also explore the basics of Vue.js, a user-friendly web framework, enabling you to create a beautiful and reusable web interfaces that can control your Grasshopper definition inputs. Additionally, you will gain experience with Three.js web geometry library to develop dynamic and custom 3D scenes in your website. 
+
+
 
 ## Slides
 https://docs.google.com/presentation/d/1kQS1eDlVabVp1Tn3BGf5KWl472_4omvTNg4js6gBjek/edit#slide=id.g2cb5cba85cb_0_515
@@ -19,24 +25,46 @@ https://docs.google.com/presentation/d/1kQS1eDlVabVp1Tn3BGf5KWl472_4omvTNg4js6gB
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-## Customize configuration
+ 
+## Run project locally
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-## Project Setup
+### Start Rhino.Compute
+
+Start your local Rhino.Compute server either by running your Grasshopper (with Hops installed) or by directly starting Rhino.Compute from `%AppData%\McNeel\Rhinoceros\packages\7.0\Hops\0.16.2\compute.geometry\compute.geometry`. 
+
+You know that Rhino.Compute is running if you can see in your console `Listening on..`
+
+![image](https://github.com/just-ajs/aectech-2024-kpf-ttcore-worskhop/assets/35227625/f41a0b9b-d4a8-4e07-9fdf-4051a14b02a8)
+
+When you have Rhino.Compute running, have a look at the number of the localhost. The example above has a localhost number 8081. This number needs to match the host number in the `source/scripts/compute.js` file (line 6).
+
+
+![image](https://github.com/just-ajs/aectech-2024-kpf-ttcore-worskhop/assets/35227625/85246a48-a91d-41e6-aaca-4654cabc79e4)
+
+If your Rhino.Compute localhost number is different, adjust `compute.js` file to match it. 
+
+
+### Run front-end
+
+In the terminal, run following commands:
+
+#### Install packages needed to run the project
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+#### Compile and Hot-Reload for Development
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+#### Compile and Minify for Production
 
 ```sh
 npm run build
 ```
+
+
