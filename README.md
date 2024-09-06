@@ -1,8 +1,12 @@
-![download](https://github.com/just-ajs/aectech-2024-kpf-ttcore-worskhop/assets/35227625/da2c1f10-eb52-4463-9526-8ad3c58244a4)
+<p align="left">
+   <img src="https://github.com/user-attachments/assets/90fd3e8c-0fff-4849-a11b-a47cca08983b" alt="AECtech-Conference-flat" width="200"/>
+  <img src="https://github.com/just-ajs/aectech-2024-kpf-ttcore-worskhop/assets/35227625/da2c1f10-eb52-4463-9526-8ad3c58244a4" alt="download" width="200"/>
+
+</p>
 
 # Grasshopper on the Web: Creating Websites with Rhino.Compute, Vue, and Three.js. 
 
-This is repository with materials used during the AEC TECH Barcelona workshops. 
+This is repository with materials used during the AEC TECH Barcelona and AEC TECH NYC workshops. 
 
 Learn to build a custom web interface for real-time control and display of Grasshopper definitions. In this workshop, you will learn how to prepare your Grasshopper scripts to run on the web with Rhino.Compute. You will also explore the basics of Vue.js, a user-friendly web framework, enabling you to create a beautiful and reusable web interfaces that can control your Grasshopper definition inputs. Additionally, you will gain experience with Three.js web geometry library to develop dynamic and custom 3D scenes in your website. 
 
