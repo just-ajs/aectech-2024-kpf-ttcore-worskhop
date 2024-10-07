@@ -17,7 +17,7 @@ import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 import { runCompute } from "@/scripts/compute.js"
 import { loadRhino } from "@/scripts/compute.js";
 
-import context from "../assets/moonless_golf_1k.hdr"
+import context from "../assets/dancing_hall_4k.hdr"
 
 const ghPath = '../assets/disco.gh'
 
