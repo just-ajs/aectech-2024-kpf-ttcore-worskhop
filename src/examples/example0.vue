@@ -1,7 +1,7 @@
 <template>
   <div id="body">
     <!-- HTML -->
-    <h1 id="title">Introduction to Web Developmenttttt</h1>
+    <h1 id="title">Introduction to Web Development</h1>
     <br>
     <p>Web development is made up of three major parts:</p>
     
