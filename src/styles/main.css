@@ -26,3 +26,14 @@ a,
     place-items: center;
   }
 }
+
+.input-title {
+  font-weight: normal;
+  color: var(--color-heading);
+  padding:10px;
+  height:20px;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+}
+
+

@@ -67,3 +67,18 @@ input[type='range']:hover::-webkit-slider-thumb {
 		1.417px 1.417px 2.834px 0px color(display-p3 0.3451 0.4 0.5176 / 0.50);
 }
 
+.shadow-border {
+    width: 100%;
+	padding:15px 25px;
+	margin: 15px 0px;
+    background: var(--global-neumorphic-light);
+    border-radius: 25px;
+    box-shadow: -1.751px -1.751px 3.503px 0px color(display-p3 1 1 1 / 0.50) inset, 
+                1.751px 1.751px 3.503px 0px color(display-p3 0.3451 0.4 0.5176 / 0.50) inset;
+}
+
+.shadow-border:hover {
+    background: var(--global-neumorphic-light);
+    box-shadow: -1.751px -1.751px 3.503px 0px color(display-p3 1 1 1 / 0.50) inset, 
+                1.751px 1.751px 3.503px 0px color(display-p3 0.3451 0.4 0.5176 / 0.50) inset;
+}

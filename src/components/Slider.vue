@@ -23,7 +23,7 @@ function emitValueUpdate()
 <template>
 <div>
 	<form class="definition-input">
-    <label class="input-title" for="range-slider">{{ title }}: {{ sliderValue }}</label>
+    <label class="input-title" >{{ title }}: {{ sliderValue }}</label>
 
     <input type="range" class="modern-range"
       :min="min" 

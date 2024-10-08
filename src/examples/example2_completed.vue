@@ -17,11 +17,13 @@
 
       <Dropdown :title="shapeDropDownName"
       :options="dropdownOptions" :val="shapeIndex" @update="updateValue"></Dropdown>
-      
+
+      <MetadataTextBox :metadata="metadata"></MetadataTextBox>
+    
     </div>
   
     <div id="viewer">
-      <GeometryView :data="inputs" :path="path"></GeometryView>
+      <GeometryView :data="inputs" :path="path" @updateMetadata="receiveMetadata"></GeometryView>
     </div>
 
 </template>
@@ -31,6 +33,7 @@
   import GeometryView from "../components/MinimalisticGeometryView.vue"
   import Slider from '../components/Slider.vue'
   import Dropdown from "../components/Dropdown.vue"
+  import MetadataTextBox from "@/components/MetadataTextBox.vue"
   
   //define path to grasshopper script
   import def from "../assets/wall.gh"
@@ -57,6 +60,8 @@
     {label: "Convex", value: 2}
   ])
 
+  let metadata = ref([])
+
 
   
   //define inputs
@@ -78,13 +83,18 @@
     }
   }
   
+  function receiveMetadata(newValue) {
+    console.log(newValue)
+    metadata.value = newValue
+  }
+
   </script>
   
   <style scoped>
   
   #sidebar {
-    width: 310px;
-    padding: 10px;
+    width: 350px;
+    padding: 20px;
     flex-shrink: 0; 
   }
   

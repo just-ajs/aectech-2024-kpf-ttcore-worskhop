@@ -6,7 +6,7 @@
     </div>
   
     <div id="viewer">
-      <GeometryView :data="inputs" :path="path"></GeometryView>
+      <GeometryView :data="inputs" :path="path" @updateMetadata="receiveMetadata"></GeometryView>
     </div>
 
 </template>
@@ -16,6 +16,7 @@
   import GeometryView from "../components/MinimalisticGeometryView.vue"
   import Slider from '../components/Slider.vue'
   import Dropdown from "../components/Dropdown.vue"
+  import MetadataTextBox from "@/components/MetadataTextBox.vue"
   
   //define path to grasshopper script
   import def from "../assets/wall.gh"
@@ -35,6 +36,11 @@
           console.log(parameterName + ':' + newValue)
       }
     }
+  }
+
+  function receiveMetadata(newValue) {
+    console.log(newValue)
+    metadata.value = newValue
   }
   
   </script>
