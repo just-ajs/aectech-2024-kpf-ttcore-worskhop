@@ -2,8 +2,9 @@ import rhino3dm from "https://cdn.jsdelivr.net/npm/rhino3dm@8.0.0-beta2/rhino3dm
 import RhinoCompute from "compute-rhino3d"
 import { store } from "@/stores/storeSingleton"
 
-// Local RhinoCompute endpoint
-RhinoCompute.url = "http://localhost:8081/"
+// Local RhinoCompute endpoint  
+RhinoCompute.url = "http://localhost:8081/" //Rhino 7
+//RhinoCompute.url = "http://localhost:5000/" //Rhino 8
 
 let rhino, doc, res
 
