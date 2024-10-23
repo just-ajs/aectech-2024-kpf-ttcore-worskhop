@@ -92,9 +92,9 @@ function init() {
     dirLight.position.set(dirLightX, dirLightY, dirLightZ);
     dirLight.lookAt(0, 0, 15)
     dirLight.castShadow = true;
-    dirLight.shadow.camera.left = -15;
-    dirLight.shadow.camera.right = 15; 
-    dirLight.shadow.camera.top = 40;
+    dirLight.shadow.camera.left = -35;
+    dirLight.shadow.camera.right = 35; 
+    dirLight.shadow.camera.top = 80;
 
     dirLight.shadow.camera.near = 0.1;
     dirLight.shadow.camera.far = 500;
