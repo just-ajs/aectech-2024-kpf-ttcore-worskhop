@@ -22,8 +22,9 @@
   import def from "../assets/wall.gh"
   const path = def
 
+  //define input names and values
  
-  //define inputs
+  //define inputs to be sent to Geometry View (and compute)
    let inputs = ref({
 
   });
