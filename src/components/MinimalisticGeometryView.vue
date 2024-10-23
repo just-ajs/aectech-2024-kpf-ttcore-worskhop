@@ -80,7 +80,7 @@ function init() {
     let lightZ = 50;
 
     // create a spotlight with shadow camera parameters
-    const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x8d8d8d, 2 );
+    const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x8d8d8d, 1.5 );
     hemiLight.position.set( lightX, lightY,lightZ );
     scene.add( hemiLight );
 
@@ -88,16 +88,22 @@ function init() {
     let dirLightX = 20;
     let dirLightY= 50;
     let dirLightZ = 50;
-    const dirLight = new THREE.DirectionalLight( 0xFFDB83, 3 );
+    const dirLight = new THREE.DirectionalLight( 0xFFDB83, 6 );
     dirLight.position.set(dirLightX, dirLightY, dirLightZ);
     dirLight.lookAt(0, 0, 15)
     dirLight.castShadow = true;
-     dirLight.shadow.camera.left = -15;
-     dirLight.shadow.camera.right = 15; 
-    dirLight.shadow.camera.top = 20;
+    dirLight.shadow.camera.left = -15;
+    dirLight.shadow.camera.right = 15; 
+    dirLight.shadow.camera.top = 40;
 
-     dirLight.shadow.camera.near = 0.1;
+    dirLight.shadow.camera.near = 0.1;
     dirLight.shadow.camera.far = 500;
+
+    // Increase shadow map size for better quality
+    dirLight.shadow.mapSize.width = 2048;
+    dirLight.shadow.mapSize.height = 2048;
+
+
     scene.add( dirLight );
 
     const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } ); 
